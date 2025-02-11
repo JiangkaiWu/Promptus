@@ -110,11 +110,16 @@ Inverse prompts have multiple bitrate levels and are requested by the browser cl
 ### Browser Player
 At the client, the received prompts are forwarded to the Promptus process. Within the Promptus process, the real-time engine and a GPU are invoked to generate videos. The generated videos are played via the browser's Media Source Extensions (MSE).
 
-The following video shows an example:
+The following videos show examples:
 
 <div style="text-align: center;">
   <img src="docs/imgs/Browser.gif" width="960">
   <strong><p>Promptus in Browser-side Video Streaming</strong></p>
+</div>
+
+<div style="text-align: center;">
+  <img src="docs/imgs/trace.gif" width="960">
+  <strong><p>Promptus under real-world network traces</strong></p>
 </div>
 
 &nbsp;
