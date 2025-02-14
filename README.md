@@ -119,7 +119,7 @@ The following videos show examples:
 
 <div style="text-align: center;">
   <img src="docs/imgs/trace.gif" width="960">
-  <strong><p>Promptus under real-world network traces</strong></p>
+  <strong><p>Promptus under Real-world Network Traces</strong></p>
 </div>
 
 &nbsp;
@@ -128,7 +128,7 @@ The following videos show examples:
 
 *The inversion code will be open-sourced after publication. If needed, please email `jiangkai.wu@stu.pku.edu.cn` with the following information:
 
-- Your name, title and affilation
+- Your name, title, affilation and advisor (if you are currently a student)
 - Your intended use of the code
 
 I will promptly send you the inversion code.
