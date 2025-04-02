@@ -6,8 +6,19 @@ This is the official implementation of the paper [Promptus: Can Prompts Streamin
 
 <div style="text-align: center;">
   <img src="docs/imgs/sky_demo.gif" width="1024">
-  <p><strong>The original video &nbsp;&nbsp;vs &nbsp;&nbsp;The video generated from inverse prompts</strong></p>
+  <p><strong>The original video &nbsp;&nbsp;VS &nbsp;&nbsp;The video regenerated from inverse prompts</strong></p>
 </div>
+
+&nbsp;
+
+*To start, it is recommended to run the `'Real-time Generation`' with the provided pre-trained prompts, as it is the simplest way to experience Promptus.
+
+*The inversion code will be open-sourced immediately after publication. If you need it before that, please email `jiangkai.wu@stu.pku.edu.cn` with the following information:
+
+- Your name, title, affilation and advisor (if you are currently a student)
+- Your intended use of the code
+
+I will promptly send you the inversion code. Before requesting the inversion code, the current repository's code is enough to experience the real-time generation.
 
 ## Inversion
 ### (0) Getting Started
@@ -31,7 +42,7 @@ $ pip install polygraphy==0.49.9
 $ conda install onnx=1.17.0
 $ pip install onnx_graphsurgeon==0.5.2
 $ pip install cuda-python==12.6.2.post1
-# At this point, the environment is ready to run the real-time demo.
+# At this point, the environment is ready to run the real-time generation.
 $ pip install torchmetrics==1.3.0.post0
 $ pip install huggingface_hub==0.25.0
 $ pip install streamlit==1.31.0
@@ -44,15 +55,16 @@ $ pip install open-clip-torch==2.24.0
 $ pip install transformers==4.37.2
 $ pip install openai-clip==1.0.1
 $ pip install scipy==1.12.0
+$ pip install accelerate
 ```
-If you only want to experience real-time generation, please skip to the 'Real-time Demo' part.
+If you only want to experience real-time generation, please skip to the `'Real-time Generation'` part. We provide some pre-trained prompts for testing, allowing you to generate directly without inversion.
 ### (1) Stable Diffusion Model
 Download the official SD Turbo model `'sd_turbo.safetensors'` from [here](https://huggingface.co/stabilityai/sd-turbo/tree/main), and place it in the `'checkpoints'` folder.
 ### (2) Data preparation
 As a demo, we provide two example videos (`'sky'` and `'uvg'`) in the `'data'` folder, which you can test directly. 
 
 You can also use your own videos, as long as they are organized in the same format as the example above.
-### (3) Training (Inversion)
+### (3) Training
 ```bash
 $ python inversion.py -frame_path "data/sky" -max_id 140 -rank 8 -interval 10
 ```
@@ -61,7 +73,7 @@ Where `'-frame_path'` refers to the video folder, `'-max_id'` is the largest fra
 
 As an example, the inverse prompts are saved in the `'data/sky/results/rank8_interval10'` folder.
 
-### (4) Testing (Generation)
+### (4) Testing
 
 After training, you can generate videos from the inverse prompts. For example:
 ```bash
@@ -69,10 +81,11 @@ $ python generation.py -frame_path "data/sky" -rank 8 -interval 10
 ```
 the generated frames are saved in the `'data/sky/results/rank8_interval10'` folder.
 
+*Note that the generation through `generation.py` is primarily for debugging and accuracy evaluation, but the generation speed is slow (due to being implemented in PyTorch). For real-time generation, please refer to the `'Real-time Generation'` part later on.
+
 We provide pre-trained prompts (in 225 kbps) for `'sky'` and `'uvg'` examples, allowing you to generate directly without training.
 
-
-## Real-time Demo
+## Real-time Generation
 ### (0) Getting real-time engines
 
 We release the real-time generation engines. 
@@ -83,7 +96,7 @@ If you use a different GPU, Promptus will automatically build engines for your m
 In this case, please wait a few minutes during the first run for the engines to be built.
 
 ### (1) Real-time generating
-We provide pre-trained prompts (in 225 kbps) for `'sky'` and `'uvg'` examples, allowing you to generate directly without training.
+We provide pre-trained prompts (in 225 kbps) for `'sky'` and `'uvg'` examples, allowing you to generate directly without inversion.
 For example:
 ```bash
 $ python realtime_demo.py -prompt_dir "data/sky/results/rank8_interval10" -batch 10 -visualize True
@@ -96,7 +109,7 @@ On a single NVIDIA GeForce 4090D, the generation speed reaches 170 FPS. The foll
 
 <div style="text-align: center;">
   <img src="docs/imgs/Real-time.gif" width="960">
-  <strong><p>Real-time Demo</strong></p>
+  <strong><p>Real-time Demo: Generation in 170 FPS</strong></p>
 </div>
 
 ## Integrated into browsers and video streaming platforms
@@ -121,17 +134,6 @@ The following videos show examples:
   <img src="docs/imgs/trace.gif" width="960">
   <strong><p>Promptus under Real-world Network Traces</strong></p>
 </div>
-
-&nbsp;
-
-*To start, it is recommended to run the Real-time Demo with the pre-trained prompts, as it is the simplest way to experience Promptus.
-
-*The inversion code will be open-sourced after publication. If needed, please email `jiangkai.wu@stu.pku.edu.cn` with the following information:
-
-- Your name, title, affilation and advisor (if you are currently a student)
-- Your intended use of the code
-
-I will promptly send you the inversion code.
 
 ## Acknowledgement
 Promptus is built based on these repositories:

@@ -132,8 +132,6 @@ def generation(
 
             # Save the generate frame.
             img = torch.clamp((img + 1.0) / 2.0, min=0.0, max=1.0)
-            if filter is not None:
-                img = filter(img)
             img = (
                 (255 * img)
                 .to(dtype=torch.uint8)
