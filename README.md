@@ -157,10 +157,13 @@ Promptus is built based on these repositories:
 
 ## Citation
 ```
-@article{wu2024promptus,
-  title={Promptus: Can Prompts Streaming Replace Video Streaming with Stable Diffusion},
-  author={Wu, Jiangkai and Liu, Liming and Tan, Yunpeng and Hao, Junlin and Zhang, Xinggong},
-  journal={arXiv preprint arXiv:2405.20032},
-  year={2024}
+@inproceedings{wu2026promptus,
+  title={Promptus: Can Prompt Streaming Replace Video Streaming},
+  author={Wu, Jiangkai and Liu, Liming and Tan, Yunpeng and Hao, Junlin and Zhang, Liang and Zhang, Xinggong},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={40},
+  number={13},
+  pages={10664--10672},
+  year={2026}
 }
 ```
