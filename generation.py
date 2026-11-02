@@ -156,8 +156,8 @@ def generation(
             id_curr = int(re.search(r'frame_(\d{5})\.prompt', prompt_curr).group(1))
             prompt_next = prompt_pair[1]
             id_next = int(re.search(r'frame_(\d{5})\.prompt', prompt_next).group(1))
-            prompt_curr = torch.load(prompt_curr)
-            prompt_next = torch.load(prompt_next)
+            prompt_curr = torch.load(prompt_curr, weights_only=True)
+            prompt_next = torch.load(prompt_next, weights_only=True)
 
             # low-rank factors
             U_curr, V_curr, U_next, V_next = prompt_curr['U'], prompt_curr['V'], prompt_next['U'], prompt_next['V']
@@ -183,7 +183,7 @@ def generation(
 
             if prev_frame is None:
                 # initialize for the first frame
-                prev_frame = torch.load(os.path.join(prompt_dir, 'init.pth'))
+                prev_frame = torch.load(os.path.join(prompt_dir, 'init.pth'), weights_only=True)
                 z = (prev_frame * sigma + rand_noise * (1 - sigma))
                 c = (U_curr @ V_curr / np.sqrt(rank)).unsqueeze(dim=0)
                 prompt = {'crossattn': c}
